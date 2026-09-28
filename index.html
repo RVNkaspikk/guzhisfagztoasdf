@@ -1,0 +1,986 @@
+```html
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURIX — CS2 Digital Store</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --white: #ffffff;
+    --bg: #f4f7fb;
+    --black: #10131a;
+    --gray: #667085;
+    --gold: #d9a72c;
+    --gold-light: #ffe59a;
+    --blue: #287cff;
+    --blue-light: #72a8ff;
+    --border: rgba(16,19,26,.09);
+    --shadow: 0 20px 60px rgba(25,45,80,.12);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background:
+        radial-gradient(circle at 10% 5%, rgba(40,124,255,.12), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(217,167,44,.14), transparent 25%),
+        var(--bg);
+    color: var(--black);
+    overflow-x: hidden;
+}
+
+/* NAV */
+
+nav {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1120px, calc(100% - 30px));
+    z-index: 100;
+    padding: 14px 18px;
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-weight: 900;
+    font-size: 21px;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #424955;
+    font-size: 14px;
+    font-weight: 700;
+    transition: .2s;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+.cart-btn {
+    border: 0;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 12px;
+    background: var(--black);
+    color: white;
+    font-weight: 800;
+}
+
+.cart-count {
+    color: var(--gold-light);
+}
+
+/* HERO */
+
+.hero {
+    min-height: 850px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 150px 20px 100px;
+    text-align: center;
+}
+
+.hero-inner {
+    max-width: 950px;
+}
+
+.badge {
+    display: inline-flex;
+    padding: 9px 15px;
+    border-radius: 999px;
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 30px rgba(0,0,0,.06);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+.badge span {
+    color: var(--blue);
+    margin-right: 7px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 8vw, 92px);
+    line-height: .95;
+    letter-spacing: -6px;
+    font-weight: 900;
+}
+
+.hero h1 .gold {
+    color: var(--gold);
+}
+
+.hero h1 .blue {
+    color: var(--blue);
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 28px auto;
+    color: var(--gray);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 0;
+    padding: 15px 23px;
+    border-radius: 14px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .25s;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--blue), #1455d8);
+    color: white;
+    box-shadow: 0 12px 30px rgba(40,124,255,.25);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--black);
+    border: 1px solid var(--border);
+}
+
+/* SECTIONS */
+
+section {
+    width: min(1120px, calc(100% - 30px));
+    margin: auto;
+    padding: 90px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title small {
+    color: var(--blue);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    font-size: 43px;
+    letter-spacing: -2px;
+    margin-top: 8px;
+}
+
+/* PRODUCTS */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product {
+    position: relative;
+    background: rgba(255,255,255,.88);
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: .3s;
+    overflow: hidden;
+}
+
+.product:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 70px rgba(25,45,80,.17);
+}
+
+.product::before {
+    content: "";
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    right: -50px;
+    top: -50px;
+    background: var(--blue);
+    opacity: .09;
+    border-radius: 50%;
+}
+
+.product-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #eef5ff, #fff8dd);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.product h3 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 68px;
+}
+
+.price {
+    font-size: 30px;
+    font-weight: 900;
+    margin: 20px 0;
+}
+
+.price span {
+    color: var(--gray);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.buy {
+    width: 100%;
+    background: var(--black);
+    color: white;
+}
+
+.buy:hover {
+    background: var(--blue);
+}
+
+/* FEATURE */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+}
+
+.feature {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.feature strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* PAYMENT */
+
+.payment-box {
+    background: var(--black);
+    color: white;
+    border-radius: 30px;
+    padding: 45px;
+    position: relative;
+    overflow: hidden;
+}
+
+.payment-box::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: -100px;
+    top: -150px;
+    border-radius: 50%;
+    background: var(--blue);
+    opacity: .25;
+}
+
+.payment-box h2 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.payment-box p {
+    color: #aeb6c5;
+    max-width: 650px;
+    line-height: 1.6;
+}
+
+.payments {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.pay {
+    padding: 13px 18px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    font-weight: 800;
+}
+
+/* ORDER */
+
+.order {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.order-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.order-card h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    margin: 14px 0 7px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid #dde2ea;
+    background: #f8fafc;
+    padding: 13px;
+    border-radius: 11px;
+    outline: none;
+    font-family: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--blue);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.notice {
+    padding: 14px;
+    background: #fff8dd;
+    border: 1px solid #f0d98c;
+    border-radius: 12px;
+    color: #765b13;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+/* CART */
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -430px;
+    width: min(430px, 100%);
+    height: 100vh;
+    background: white;
+    z-index: 200;
+    box-shadow: -20px 0 60px rgba(0,0,0,.15);
+    padding: 25px;
+    transition: .35s;
+    overflow-y: auto;
+}
+
+.cart-panel.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.close-cart {
+    border: 0;
+    background: #f1f3f6;
+    border-radius: 10px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.remove {
+    border: 0;
+    background: none;
+    color: #d22;
+    cursor: pointer;
+}
+
+.cart-total {
+    margin-top: 25px;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.empty {
+    color: var(--gray);
+    padding: 30px 0;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0d1016;
+    color: white;
+    padding: 45px 20px;
+    text-align: center;
+}
+
+footer strong {
+    font-size: 21px;
+}
+
+footer p {
+    color: #8992a3;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media(max-width: 850px) {
+    .products,
+    .features,
+    .order {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        min-height: 750px;
+    }
+
+    .hero h1 {
+        letter-spacing: -3px;
+    }
+
+    .payment-box {
+        padding: 30px;
+    }
+}
+
+@media(max-width: 500px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .hero {
+        padding-top: 130px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .section-title h2 {
+        font-size: 34px;
+    }
+
+    nav {
+        top: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">AURI<span>X</span></div>
+
+    <ul class="nav-links">
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#benefits">Výhody</a></li>
+        <li><a href="#order">Objednávka</a></li>
+    </ul>
+
+    <button class="cart-btn" onclick="toggleCart()">
+        🛒 Košík <span class="cart-count" id="cartCount">0</span>
+    </button>
+</nav>
+
+<header class="hero">
+    <div class="hero-inner">
+
+        <div class="badge">
+            <span>●</span> DIGITAL STORE
+        </div>
+
+        <h1>
+            UPGRADE<br>
+            YOUR <span class="gold">CS2</span><br>
+            <span class="blue">EXPERIENCE.</span>
+        </h1>
+
+        <p>
+            Digitální služby a konfigurace pro CS2.
+            Jednoduché objednání, jasné ceny a moderní digitální doručení.
+        </p>
+
+        <div class="hero-buttons">
+            <a class="btn btn-primary" href="#shop">Prohlédnout nabídku →</a>
+            <a class="btn btn-secondary" href="#order">Objednat službu</a>
+        </div>
+
+    </div>
+</header>
+
+<section id="shop">
+
+    <div class="section-title">
+        <small>SHOP</small>
+        <h2>Vyber si svůj upgrade.</h2>
+    </div>
+
+    <div class="products">
+
+        <div class="product">
+            <div class="product-icon">⚡</div>
+            <h3>FPS Config</h3>
+            <p>
+                Optimalizovaný CS2 config zaměřený na stabilní výkon,
+                nastavení a pohodlné hraní.
+            </p>
+            <div class="price">149 Kč <span>/ config</span></div>
+            <button class="btn buy" onclick="addToCart('FPS Config',149)">
+                Přidat do košíku
+            </button>
+        </div>
+
+        <div class="product">
+            <div class="product-icon">🎯</div>
+            <h3>Aim Setup</h3>
+            <p>
+                Individuální nastavení citlivosti, crosshairu,
+                viewmodelu a dalších herních nastavení.
+            </p>
+            <div class="price">199 Kč <span>/ setup</span></div>
+            <button class="btn buy" onclick="addToCart('Aim Setup',199)">
+                Přidat do košíku
+            </button>
+        </div>
+
+        <div class="product">
+            <div class="product-icon">🖥️</div>
+            <h3>Performance Pack</h3>
+            <p>
+                Kompletní nastavení CS2 zaměřené na výkon,
+                FPS a pohodlnější gameplay.
+            </p>
+            <div class="price">299 Kč <span>/ pack</span></div>
+            <button class="btn buy" onclick="addToCart('Performance Pack',299)">
+                Přidat do košíku
+            </button>
+        </div>
+
+        <div class="product">
+            <div class="product-icon">🔵</div>
+            <h3>Crosshair Pack</h3>
+            <p>
+                Sada různých crosshair nastavení pro různé
+                herní styly.
+            </p>
+            <div class="price">100 Kč <span>/ pack</span></div>
+            <button class="btn buy" onclick="addToCart('Crosshair Pack',100)">
+                Přidat do košíku
+            </button>
+        </div>
+
+        <div class="product">
+            <div class="product-icon">👑</div>
+            <h3>Custom Config</h3>
+            <p>
+                Konfigurace vytvořená podle tvého setupu,
+                preferencí a požadavků.
+            </p>
+            <div class="price">399 Kč <span>/ custom</span></div>
+            <button class="btn buy" onclick="addToCart('Custom Config',399)">
+                Přidat do košíku
+            </button>
+        </div>
+
+        <div class="product">
+            <div class="product-icon">💎</div>
+            <h3>Ultimate Pack</h3>
+            <p>
+                Kompletní balíček s konfigurací, aim nastavením,
+                crosshairem a performance nastavením.
+            </p>
+            <div class="price">599 Kč <span>/ pack</span></div>
+            <button class="btn buy" onclick="addToCart('Ultimate Pack',599)">
+                Přidat do košíku
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<section id="benefits">
+
+    <div class="section-title">
+        <small>WHY US</small>
+        <h2>Proč právě AURIX?</h2>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <strong>⚡ Digitální doručení</strong>
+            <p>Produkty jsou digitální a doručují se online po potvrzení objednávky.</p>
+        </div>
+
+        <div class="feature">
+            <strong>🎯 Custom nastavení</strong>
+            <p>U vybraných služeb můžeš specifikovat vlastní požadavky.</p>
+        </div>
+
+        <div class="feature">
+            <strong>💎 Premium design</strong>
+            <p>Moderní prezentace a přehledné objednávání.</p>
+        </div>
+
+        <div class="feature">
+            <strong>💰 Od 100 Kč</strong>
+            <p>Minimální hodnota objednávky je nastavena na 100 Kč.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <div class="payment-box">
+        <h2>💳 Platba podle domluvy.</h2>
+
+        <p>
+            Po vytvoření objednávky se domluvíš na dostupné platební metodě.
+            Skutečný platební odkaz se doplní až podle zvoleného poskytovatele.
+        </p>
+
+        <div class="payments">
+            <div class="pay">PAYPAL</div>
+            <div class="pay">REVOLUT</div>
+            <div class="pay">PAYSAFECARD</div>
+        </div>
+    </div>
+
+</section>
+
+<section id="order">
+
+    <div class="section-title">
+        <small>ORDER</small>
+        <h2>Vytvoř objednávku.</h2>
+    </div>
+
+    <div class="order">
+
+        <div class="order-card">
+
+            <h3>Objednávkový formulář</h3>
+
+            <form id="orderForm">
+
+                <label>Jméno / Nick</label>
+                <input id="name" type="text" placeholder="např. Kaspikk" required>
+
+                <label>Kontakt</label>
+                <input id="contact" type="text" placeholder="Discord / e-mail" required>
+
+                <label>Služba</label>
+                <select id="service" required>
+                    <option value="">Vyber službu</option>
+                    <option>FPS Config</option>
+                    <option>Aim Setup</option>
+                    <option>Performance Pack</option>
+                    <option>Crosshair Pack</option>
+                    <option>Custom Config</option>
+                    <option>Ultimate Pack</option>
+                </select>
+
+                <label>Požadavky</label>
+                <textarea id="details" placeholder="Napiš, co přesně potřebuješ..."></textarea>
+
+                <button class="btn btn-primary" style="width:100%;margin-top:18px;">
+                    Odeslat objednávku
+                </button>
+
+            </form>
+
+            <div class="notice">
+                Minimální hodnota objednávky: <b>100 Kč</b>.
+                Platba probíhá až po potvrzení objednávky.
+            </div>
+
+        </div>
+
+        <div class="order-card">
+
+            <h3>Jak to funguje?</h3>
+
+            <p style="color:#667085;line-height:1.8;">
+                <b>01 —</b> Vybereš si službu.<br><br>
+                <b>02 —</b> Odešleš objednávku.<br><br>
+                <b>03 —</b> Domluvíme detaily a dostupnou platbu.<br><br>
+                <b>04 —</b> Po potvrzení objednávky dostaneš digitální produkt.
+            </p>
+
+            <div class="notice">
+                Nabídka je určena pro běžné herní nastavení a konfigurace.
+                Neposkytuje obcházení anti-cheatu ani cheat software.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <strong>AURI<span style="color:#287cff">X</span></strong>
+    <p>Digital CS2 Store • © <span id="year"></span></p>
+</footer>
+
+<!-- CART -->
+
+<div class="cart-panel" id="cartPanel">
+
+    <div class="cart-header">
+        <h2>🛒 Košík</h2>
+        <button class="close-cart" onclick="toggleCart()">✕</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+        Celkem: <span id="cartTotal">0 Kč</span>
+    </div>
+
+    <button
+        class="btn btn-primary"
+        style="width:100%;margin-top:20px;"
+        onclick="checkout()">
+        Pokračovat k objednávce →
+    </button>
+
+</div>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    updateCart();
+
+    document.getElementById("cartPanel").classList.add("open");
+}
+
+function removeFromCart(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+}
+
+function updateCart() {
+
+    const items = document.getElementById("cartItems");
+    const count = document.getElementById("cartCount");
+    const total = document.getElementById("cartTotal");
+
+    count.textContent = cart.length;
+
+    if(cart.length === 0) {
+        items.innerHTML = '<div class="empty">Košík je zatím prázdný.</div>';
+        total.textContent = "0 Kč";
+        return;
+    }
+
+    let html = "";
+    let sum = 0;
+
+    cart.forEach((item, index) => {
+
+        sum += item.price;
+
+        html += `
+            <div class="cart-item">
+                <div>
+                    <b>${item.name}</b><br>
+                    <small>${item.price} Kč</small>
+                </div>
+
+                <button class="remove"
+                    onclick="removeFromCart(${index})">
+                    Odstranit
+                </button>
+            </div>
+        `;
+    });
+
+    items.innerHTML = html;
+    total.textContent = sum + " Kč";
+}
+
+function toggleCart() {
+
+    document
+        .getElementById("cartPanel")
+        .classList.toggle("open");
+}
+
+function checkout() {
+
+    if(cart.length === 0) {
+        alert("Košík je prázdný.");
+        return;
+    }
+
+    let total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    if(total < 100) {
+        alert("Minimální hodnota objednávky je 100 Kč.");
+        return;
+    }
+
+    toggleCart();
+
+    document
+        .getElementById("order")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+}
+
+document
+    .getElementById("orderForm")
+    .addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const name =
+            document.getElementById("name").value;
+
+        const contact =
+            document.getElementById("contact").value;
+
+        const service =
+            document.getElementById("service").value;
+
+        if(!name || !contact || !service) {
+            alert("Vyplň prosím všechna povinná pole.");
+            return;
+        }
+
+        alert(
+            "Objednávka připravena!\\n\\n" +
+            "Jméno: " + name + "\\n" +
+            "Kontakt: " + contact + "\\n" +
+            "Služba: " + service +
+            "\\n\\nTeď je potřeba napojit skutečné odesílání objednávek."
+        );
+
+        this.reset();
+    });
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+updateCart();
+
+</script>
+
+</body>
+</html>
+```
