@@ -1,10 +1,10 @@
 ```html
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pomoc má smysl ❤️</title>
+<title>RAVEN CFG — CS2 Configs</title>
 
 <style>
 *{
@@ -14,108 +14,90 @@
   font-family:Arial,Helvetica,sans-serif;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
-  background:#f7f8fa;
-  color:#171717;
+  background:#070707;
+  color:#fff;
 }
 
 header{
-  height:72px;
+  height:75px;
   padding:0 8%;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  background:#fff;
-  border-bottom:1px solid #e8e8e8;
+  justify-content:space-between;
+  border-bottom:1px solid #222;
+  background:#090909;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
 }
 
 .logo{
-  font-size:23px;
+  font-size:25px;
   font-weight:900;
+  letter-spacing:1px;
 }
 
 .logo span{
-  color:#e63946;
+  color:#ff2020;
 }
 
 nav a{
+  color:#aaa;
   text-decoration:none;
-  color:#444;
   margin-left:25px;
-  font-weight:700;
+  font-weight:bold;
 }
 
 nav a:hover{
-  color:#e63946;
+  color:#ff2020;
 }
 
 .hero{
-  min-height:72vh;
+  min-height:70vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
-  padding:80px 20px;
+  padding:70px 20px;
   background:
-    radial-gradient(circle at center,#ffe7e9 0%,#f7f8fa 60%);
+    radial-gradient(circle at center,#320909 0%,#070707 55%);
 }
 
-.hero-content{
-  max-width:800px;
+.hero h1{
+  font-size:clamp(50px,9vw,100px);
+  font-weight:1000;
+  letter-spacing:-5px;
 }
 
-.badge{
-  display:inline-block;
-  background:#fff;
-  border:1px solid #eee;
-  padding:8px 15px;
-  border-radius:30px;
-  color:#e63946;
-  font-weight:800;
-  margin-bottom:20px;
-}
-
-h1{
-  font-size:clamp(45px,8vw,85px);
-  line-height:.95;
-  letter-spacing:-4px;
-}
-
-h1 span{
-  color:#e63946;
+.hero h1 span{
+  color:#ff2020;
 }
 
 .hero p{
+  color:#999;
   max-width:650px;
-  margin:25px auto;
-  color:#666;
+  margin:20px auto 30px;
   font-size:18px;
   line-height:1.6;
 }
 
 .btn{
   display:inline-block;
-  padding:16px 30px;
-  border-radius:12px;
-  background:#e63946;
-  color:white;
+  padding:15px 28px;
+  background:#ff2020;
+  color:#fff;
+  border:0;
+  border-radius:9px;
   text-decoration:none;
   font-weight:900;
-  transition:.2s;
-  border:none;
   cursor:pointer;
+  transition:.2s;
 }
 
 .btn:hover{
   transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(230,57,70,.2);
+  box-shadow:0 0 25px rgba(255,32,32,.4);
 }
 
 section{
@@ -128,7 +110,7 @@ section{
 }
 
 .title h2{
-  font-size:38px;
+  font-size:40px;
 }
 
 .title p{
@@ -136,79 +118,88 @@ section{
   margin-top:10px;
 }
 
-.cards{
-  max-width:1050px;
+.products{
+  max-width:1100px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
 }
 
-.card{
-  background:#fff;
-  border:1px solid #e8e8e8;
-  border-radius:18px;
+.product{
+  background:#0d0d0d;
+  border:1px solid #222;
+  border-radius:16px;
   padding:30px;
-  text-align:center;
   transition:.2s;
 }
 
-.card:hover{
+.product:hover{
   transform:translateY(-5px);
-  box-shadow:0 15px 35px rgba(0,0,0,.07);
+  border-color:#ff2020;
 }
 
 .icon{
-  font-size:42px;
-  margin-bottom:15px;
+  font-size:38px;
+  margin-bottom:18px;
 }
 
-.card h3{
+.product h3{
+  font-size:23px;
   margin-bottom:10px;
 }
 
-.card p{
-  color:#777;
-  line-height:1.5;
-}
-
-.donate{
-  max-width:750px;
-  margin:auto;
-  text-align:center;
-  background:#fff;
-  border:1px solid #e5e5e5;
-  border-radius:25px;
-  padding:50px 30px;
-  box-shadow:0 15px 50px rgba(0,0,0,.06);
-}
-
-.donate h2{
-  font-size:42px;
-  margin-bottom:15px;
-}
-
-.donate p{
-  color:#777;
-  line-height:1.6;
-  margin-bottom:25px;
-}
-
-.notice{
-  margin-top:25px;
-  font-size:13px;
+.product p{
   color:#888;
+  line-height:1.5;
+  min-height:70px;
+}
+
+.price{
+  font-size:30px;
+  font-weight:900;
+  color:#ff2020;
+  margin:20px 0;
+}
+
+.buy{
+  width:100%;
+  text-align:center;
+}
+
+.feature{
+  max-width:800px;
+  margin:auto;
+  background:linear-gradient(145deg,#160707,#0b0b0b);
+  border:1px solid #ff2020;
+  border-radius:20px;
+  padding:45px;
+  text-align:center;
+  box-shadow:0 0 45px rgba(255,0,0,.08);
+}
+
+.feature h2{
+  font-size:42px;
+}
+
+.feature ul{
+  list-style:none;
+  margin:25px 0;
+  color:#aaa;
+  line-height:2;
+}
+
+.feature li::before{
+  content:"✓ ";
+  color:#ff2020;
+  font-weight:bold;
 }
 
 footer{
-  background:#171717;
-  color:#888;
-  text-align:center;
+  border-top:1px solid #222;
   padding:35px;
-}
-
-footer strong{
-  color:#fff;
+  text-align:center;
+  color:#555;
 }
 
 @media(max-width:700px){
@@ -216,12 +207,12 @@ footer strong{
     display:none;
   }
 
-  h1{
-    letter-spacing:-2px;
+  .hero h1{
+    letter-spacing:-3px;
   }
 
-  section{
-    padding:60px 5%;
+  .feature{
+    padding:30px 20px;
   }
 }
 </style>
@@ -230,43 +221,28 @@ footer strong{
 <body>
 
 <header>
-  <div class="logo">
-    POMOC<span>.</span>
-  </div>
+  <div class="logo">RAVEN<span>CFG</span></div>
 
   <nav>
-    <a href="#pomoc">Jak pomáháme</a>
-    <a href="#dar">Darovat</a>
+    <a href="#configs">Configs</a>
+    <a href="#pack">Full Pack</a>
   </nav>
 </header>
 
 
 <section class="hero">
 
-  <div class="hero-content">
+  <div>
 
-    <div class="badge">
-      ❤️ Pomoc lidem v nouzi
-    </div>
-
-    <h1>
-      KAŽDÝ DAR<br>
-      MÁ <span>SMYSL.</span>
-    </h1>
+    <h1>CS2 <span>CONFIGS</span></h1>
 
     <p>
-      Podpořte práci organizace Člověk v tísni.
-      Váš dar můžete věnovat přímo na jejich oficiální
-      darovací stránce.
+      Clean competitive CS2 configs made for players
+      who want a consistent setup and optimized settings.
     </p>
 
-    <a
-      class="btn"
-      href="https://www.clovekvtisni.cz/darujte/jednorazove"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      ❤️ CHCI DAROVAT
+    <a href="#configs" class="btn">
+      VIEW CONFIGS
     </a>
 
   </div>
@@ -274,81 +250,146 @@ footer strong{
 </section>
 
 
-<section id="pomoc">
+<section id="configs">
 
   <div class="title">
-    <h2>Kam může pomoc směřovat?</h2>
-    <p>Vyberte si účel přímo na oficiální stránce organizace.</p>
+    <h2>CONFIG SHOP</h2>
+    <p>One config — €12</p>
   </div>
 
-  <div class="cards">
 
-    <div class="card">
-      <div class="icon">🌍</div>
-      <h3>Humanitární pomoc</h3>
+  <div class="products">
+
+
+    <div class="product">
+
+      <div class="icon">🎯</div>
+
+      <h3>AIM CONFIG</h3>
+
       <p>
-        Podpora lidí zasažených krizemi
-        a přírodními katastrofami.
+        Sensitivity, crosshair, viewmodel
+        and competitive aim settings.
       </p>
+
+      <div class="price">€12</div>
+
+      <a
+        class="btn buy"
+        href="https://paypal.me/KokotAdamek"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        BUY NOW
+      </a>
+
     </div>
 
-    <div class="card">
-      <div class="icon">🏠</div>
-      <h3>Pomoc lidem v nouzi</h3>
+
+    <div class="product">
+
+      <div class="icon">⚡</div>
+
+      <h3>FPS CONFIG</h3>
+
       <p>
-        Podpora lidí, kteří potřebují
-        sociální nebo finanční pomoc.
+        Legit graphics and performance
+        settings focused on smoother gameplay.
       </p>
+
+      <div class="price">€12</div>
+
+      <a
+        class="btn buy"
+        href="https://paypal.me/KokotAdamek"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        BUY NOW
+      </a>
+
     </div>
 
-    <div class="card">
-      <div class="icon">📚</div>
-      <h3>Vzdělávání</h3>
+
+    <div class="product">
+
+      <div class="icon">⌨️</div>
+
+      <h3>BINDS PACK</h3>
+
       <p>
-        Podpora vzdělávacích programů
-        a kritického myšlení.
+        Useful competitive binds for
+        movement, utility and gameplay.
       </p>
+
+      <div class="price">€12</div>
+
+      <a
+        class="btn buy"
+        href="https://paypal.me/KokotAdamek"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        BUY NOW
+      </a>
+
     </div>
 
-    <div class="card">
-      <div class="icon">❤️</div>
-      <h3>Další sbírky</h3>
+
+    <div class="product">
+
+      <div class="icon">🖱️</div>
+
+      <h3>SENS CONFIG</h3>
+
       <p>
-        Na oficiální stránce si můžete
-        vybrat z aktuálních sbírek.
+        Competitive mouse sensitivity,
+        zoom sensitivity and setup settings.
       </p>
+
+      <div class="price">€12</div>
+
+      <a
+        class="btn buy"
+        href="https://paypal.me/KokotAdamek"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        BUY NOW
+      </a>
+
     </div>
+
 
   </div>
 
 </section>
 
 
-<section id="dar">
+<section id="pack">
 
-  <div class="donate">
+  <div class="feature">
 
-    <h2>Chcete pomoci?</h2>
+    <h2>FULL CS2 PACK</h2>
 
-    <p>
-      Kliknutím na tlačítko budete přesměrováni
-      přímo na oficiální stránku Člověka v tísni,
-      kde si můžete zvolit částku a účel svého daru.
-    </p>
+    <div class="price">€30</div>
+
+    <ul>
+      <li>Aim Config</li>
+      <li>FPS Config</li>
+      <li>Binds Pack</li>
+      <li>Sensitivity Config</li>
+      <li>Complete setup guide</li>
+    </ul>
 
     <a
       class="btn"
-      href="https://www.clovekvtisni.cz/darujte/jednorazove"
+      href="https://paypal.me/KokotAdamek"
       target="_blank"
       rel="noopener noreferrer"
     >
-      DAROVAT LIBOVOLNOU ČÁSTKU
+      BUY FULL PACK
     </a>
-
-    <div class="notice">
-      Tento web pouze odkazuje na oficiální darovací stránku
-      Člověka v tísni. Peníze nejdou přes tento web.
-    </div>
 
   </div>
 
@@ -356,8 +397,7 @@ footer strong{
 
 
 <footer>
-  <strong>POMOC.</strong><br><br>
-  Pro skutečný dar používejte oficiální web organizace.
+  © 2026 RAVENCFG — CS2 Config Store
 </footer>
 
 </body>
